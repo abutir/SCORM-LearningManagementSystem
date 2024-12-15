@@ -43,7 +43,9 @@
                 // console.log(file);
 
                 //   alert(response.message);
-                window.location.href = response.url;
+                const baseUrl = window.location.origin;
+                const fullUrl = baseUrl + response.Url; 
+                window.location.href = fullUrl;
             });
             this.on("error", function (file) {
                 $(".dz-error-mark svg").css("background", "red");

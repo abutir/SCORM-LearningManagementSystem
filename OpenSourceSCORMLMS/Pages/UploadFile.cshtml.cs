@@ -83,12 +83,12 @@ namespace OpenSourceSCORMLMS.Pages
             Helpers.SCORMUploadHelper scorm = new Helpers.SCORMUploadHelper(_logger);
             scorm.parseManifest(sPathToManifest);
             string sPathToIndex = scorm.href;
-            databaseHelper.InsertScormCourse(scorm.title, scorm.title, sPathToIndex, sPathToManifest, sPathToPackageFolder, scorm.SCORM_Version, DateTime.Now, UserID);
+            var id = databaseHelper.InsertScormCourse(scorm.title, scorm.title, sPathToIndex, sPathToManifest, sPathToPackageFolder, scorm.SCORM_Version, DateTime.Now, UserID);
            
             if (isSavedSuccessfully)
             {
                 _logger.LogInformation("SCORM package saved.");
-                return new JsonResult(new { Message = fname, Url = sPathToIndex });
+                return new JsonResult(new {Message = fname, Url = "/Package?id=" + id});
             }
             else
             {

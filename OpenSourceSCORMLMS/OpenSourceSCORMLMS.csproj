@@ -21,6 +21,7 @@
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
     <Folder Include="Data\Migrations\" />
+    <Folder Include="SCORMCourses\" />
     <Folder Include="SCORMPackages\" />
   </ItemGroup>
 

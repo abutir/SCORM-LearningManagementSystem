@@ -209,7 +209,7 @@ namespace OpenSourceSCORMLMS.Helpers
                 logger.LogError(ex.Message);
             }
         }
-        public void InsertScormCourse(string titleFromManifest, string title, string pathToIndex, string pathToManifest, string pathToFolder, string SCORM_Version, DateTime dtUploaded, string UserID)
+        public int InsertScormCourse(string titleFromManifest, string title, string pathToIndex, string pathToManifest, string pathToFolder, string SCORM_Version, DateTime dtUploaded, string UserID)
         {
             try
             {
@@ -225,12 +225,15 @@ namespace OpenSourceSCORMLMS.Helpers
                     SCORM_course.SCORM_version = SCORM_Version;
                     context.SCORM_Course.Add(SCORM_course);
                     context.SaveChanges();
-
+                    
+                    return SCORM_course.id;
                 }
             }
             catch (Exception ex)
             {
                 logger.LogError(ex.Message);
+                
+                throw;
             }
         }
         public void SetValueCore(int core_id, string sDataItem, string sDataValue)
